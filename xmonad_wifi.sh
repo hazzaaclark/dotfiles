@@ -1,69 +1,62 @@
 #!/bin/bash
-#
-echo
-"
+
+# Set your Wi-Fi SSID and password
+SSID="WIFI_NAME"
+PASS="PASSWD"
+
+cat <<EOF
 #################################
 #  COPYRIGHT (C) HARRY CLARK 2023
 #  XMONAD AUTO WIFI SCRIPT
 #################################
-"
 
-SSID="WIFI_NAME"
-PASS="PASSWD"
-
-echo 
-"
 ###############################
 #  CHECKING FOR PRE-EXISTING
 #        WIFI CONFIG
 ###############################
-"
+
+EOF
 
 EXISTING_CONNECTION=$(nmcli -t -f ACTIVE,SSID dev wifi list | grep '^yes:' | cut -d: -f2)
 
-if [[ "EXISTING_CONNECTION" == "SSID" ]]; then
-	echo
-	"
+if [[ "$EXISTING_CONNECTION" == "$SSID" ]]; then
+	cat <<EOF
 	|||||||||||||||||||||||||||||||||||||
-	| ALREADY CONNECTD TO WIFI: $SSID   |
+	| ALREADY CONNECTED TO WIFI: $SSID   |
 	|||||||||||||||||||||||||||||||||||||
-	"
+	EOF
 
 	exit 0
-
 fi
 
-echo
-"
+cat <<EOF
 ###############################
 #   NETWORKMANAGER RUNNING
-#   	      CHECK
+#          CHECK
 ###############################
-"
+
+EOF
 
 if ! systemctl is-active --quiet NetworkManager; then
-	echo 
-	"
+	cat <<EOF
 	|||||||||||||||||||||||||||||||||||||||||||||||||||
-	| Network Manager is not running. Initialising NM |
+	| Network Manager is not running. Initializing NM |
 	|||||||||||||||||||||||||||||||||||||||||||||||||||
-	"
+	EOF
 	sudo systemctl start NetworkManager
 fi
 
-echo
-"
+cat <<EOF
 ##########################
 # CONNECT TO WIFI NETWORK
 ##########################
-"
 
-if sudo nmcli device wifi connect "$SSID" password "$PASSWORD"; then
-	echo
-	"
+EOF
+
+if sudo nmcli device wifi connect "$SSID" password "$PASS"; then
+	cat <<EOF
 	||||||||||||||||||||||||||||||
 	| CONNECTED TO WIFI: $SSID   |
 	||||||||||||||||||||||||||||||
-	"
-
+	EOF
 fi
