@@ -1,10 +1,5 @@
 #!/bin/bash
 
-#################################
-#  COPYRIGHT (C) HARRY CLARK 2023
-#  XMONAD AUTO WIFI SCRIPT
-#################################
-
 # Set your Wi-Fi SSID and password
 SSID="WIFI_NAME"
 PASS="PASSWD"
