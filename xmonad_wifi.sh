@@ -1,62 +1,56 @@
 #!/bin/bash
 
-# Set your Wi-Fi SSID and password
-SSID="WIFI_NAME"
-PASS="PASSWD"
-
-cat <<EOF
 #################################
 #  COPYRIGHT (C) HARRY CLARK 2023
 #  XMONAD AUTO WIFI SCRIPT
 #################################
 
-###############################
-#  CHECKING FOR PRE-EXISTING
-#        WIFI CONFIG
-###############################
+# Set your Wi-Fi SSID and password
+SSID="WIFI_NAME"
+PASS="PASSWD"
 
-EOF
+echo "#################################"
+echo "#  COPYRIGHT (C) HARRY CLARK 2023"
+echo "#  XMONAD AUTO WIFI SCRIPT"
+echo "#################################"
+echo
+
+echo "###############################"
+echo "#  CHECKING FOR PRE-EXISTING"
+echo "#        WIFI CONFIG"
+echo "###############################"
+echo
 
 EXISTING_CONNECTION=$(nmcli -t -f ACTIVE,SSID dev wifi list | grep '^yes:' | cut -d: -f2)
 
 if [[ "$EXISTING_CONNECTION" == "$SSID" ]]; then
-	cat <<EOF
-	|||||||||||||||||||||||||||||||||||||
-	| ALREADY CONNECTED TO WIFI: $SSID   |
-	|||||||||||||||||||||||||||||||||||||
-	EOF
+	echo "|||||||||||||||||||||||||||||||||||||"
+	echo "| ALREADY CONNECTED TO WIFI: $SSID   |"
+	echo "|||||||||||||||||||||||||||||||||||||"
 
 	exit 0
 fi
 
-cat <<EOF
-###############################
-#   NETWORKMANAGER RUNNING
-#          CHECK
-###############################
-
-EOF
+echo "###############################"
+echo "#   NETWORKMANAGER RUNNING"
+echo "#          CHECK"
+echo "###############################"
+echo
 
 if ! systemctl is-active --quiet NetworkManager; then
-	cat <<EOF
-	|||||||||||||||||||||||||||||||||||||||||||||||||||
-	| Network Manager is not running. Initializing NM |
-	|||||||||||||||||||||||||||||||||||||||||||||||||||
-	EOF
+	echo "|||||||||||||||||||||||||||||||||||||||||||||||||||"
+	echo "| Network Manager is not running. Initializing NM |"
+	echo "|||||||||||||||||||||||||||||||||||||||||||||||||||"
 	sudo systemctl start NetworkManager
 fi
 
-cat <<EOF
-##########################
-# CONNECT TO WIFI NETWORK
-##########################
-
-EOF
+echo "##########################"
+echo "# CONNECT TO WIFI NETWORK"
+echo "##########################"
+echo
 
 if sudo nmcli device wifi connect "$SSID" password "$PASS"; then
-	cat <<EOF
-	||||||||||||||||||||||||||||||
-	| CONNECTED TO WIFI: $SSID   |
-	||||||||||||||||||||||||||||||
-	EOF
+	echo "||||||||||||||||||||||||||||||"
+	echo "| CONNECTED TO WIFI: $SSID   |"
+	echo "||||||||||||||||||||||||||||||"
 fi
