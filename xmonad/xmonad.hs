@@ -112,9 +112,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_s     ), sidebarlaunch)
     , ((modm .|. shiftMask, xK_s     ), ewwclose)
 
-    -- Launch Firefox
-    , ((modm .|. shiftMask, xK_b), spawn "firefox")
-
     -- Audio keys
     , ((0,                    xF86XK_AudioPlay), spawn "playerctl play-pause")
     , ((0,                    xF86XK_AudioPrev), spawn "playerctl previous")
