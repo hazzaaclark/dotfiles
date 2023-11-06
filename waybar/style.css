@@ -1,0 +1,30 @@
+* {
+	border: none;
+	border-radius: 0;
+	font-family: "JetBrainsMono";
+	font-weight: bold;
+	font-size: 16px;
+	min-height: 0;
+}
+
+window#waybar
+{
+	border-radius: 10px;
+	background: #010409;
+	color: #cdd6f4;
+}
+
+
+tooltip
+{
+	background: #010409;
+	border-radius: 10px;
+}
+
+#workspaces button
+{
+	padding: 5px;
+	color: #313244;
+	margin-right: 5px;
+}
+
