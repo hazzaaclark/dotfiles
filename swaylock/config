@@ -1,17 +1,20 @@
-image=~/.config/swaylock/themes/power.png
+ignore-empty-password
+font=Ubuntu Mono Nerd Font
 
-effect-blur=15x2
-effect-greyscale
-effect-scale=0.2
-
-fade-in=0.5
-
-font=JetBrains Mono
 clock
+timestr=%R
+
+image=~/.config/background
+
+fade-in=0.2
+
+#effect-blur=15x2
+#effect-greyscale
+#effect-scale=0.1
 
 indicator
 indicator-radius=110
-#indicator-thickness=10
+indicator-thickness=10
 indicator-caps-lock
 
 key-hl-color=880033ff
@@ -45,4 +48,3 @@ bs-hl-color=ffd204ff
 caps-lock-key-hl-color=ffd204FF
 caps-lock-bs-hl-color=dededeFF
 text-caps-lock-color=009ddcff
-
